@@ -1,0 +1,57 @@
+<main *ngIf="user !== undefined">
+  <div class="container py-2">
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+      <div class="container-fluid py-3 justify-content-center">
+        <h1 class="display-5 fw-bold">Welcome {{ user.firstName }}!</h1>
+        <button
+          class="btn btn-primary btn-lg"
+          type="button"
+          (click)="exploreProducts()"
+        >
+          Explore Products
+        </button>
+      </div>
+    </div>
+
+    <div class="row align-items-md-stretch">
+      <div class="p-2 col-md-6">
+        <div class="h-80 p-5 text-bg-dark rounded-3">
+          <h2>Create Post</h2>
+          <p>Post your Products and get buyers</p>
+          <button
+            class="btn btn-outline-light"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            Create Post
+          </button>
+        </div>
+      </div>
+      <div class="p-2 col-md-6">
+        <div class="h-80 p-5 bg-body-tertiary border rounded-3">
+          <h2>Edit Profile</h2>
+          <p>Edit Your Profile Details and contact details</p>
+          <button
+            class="btn btn-outline-secondary"
+            data-bs-toggle="modal"
+            data-bs-target="#editProfileModal"
+          >
+            Edit Profile
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="mt-5 row align-items-md-stretch">
+      <div class="col-md-12">
+        <h2>My Products</h2>
+        <ng-template #noProducts>You have not posted any Product</ng-template>
+        <ng-container *ngIf="user.products.length > 0; else noProducts">
+            <app-products-table [products] ="user.products"></app-products-table>
+        </ng-container>
+      </div>
+    </div>
+    <app-create-post></app-create-post>
+    <app-edit-profile [user]="user"></app-edit-profile>
+  </div>
+</main>

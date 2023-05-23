@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 col-sm-6" *ngFor="let product of products" routerLink="/home/{{ product._id }}" >
+      <app-product-card
+        productName="{{ product.productName }}"
+        productImage="{{ product.productImage }}"
+        [price]="product.price"
+      />
+    </div>
+  </div>
+</div>

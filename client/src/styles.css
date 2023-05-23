@@ -1,0 +1,4 @@
+/* You can add global styles to this file, and also import other style files */
+.password::placeholder{
+    font: 12px sans-serif;
+}

@@ -1,0 +1,129 @@
+<div class="container" [formGroup]="RegistrationForm" (ngSubmit)="submitForm()">
+  <div
+    class="row .d-flex align-items-center justify-content-center"
+    style="height: 80vh"
+  >
+    <div class="col-12 col-md-8 col-lg-6 pb-5">
+      <form>
+        <div class="card border rounded-0">
+          <div class="card-body p-3">
+            <!--Body-->
+            <div class="form-group">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <fa-icon [icon]="faUser"></fa-icon>
+                  </div>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="firstName"
+                  name="firstName"
+                  placeholder="First Name"
+                  required
+                  formControlName="firstName"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <fa-icon [icon]="faUser"></fa-icon>
+                  </div>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lastName"
+                  name="lastName"
+                  placeholder="Last Name"
+                  required
+                  formControlName="lastName"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <fa-icon [icon]="faEmail"></fa-icon>
+                  </div>
+                </div>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="nombre"
+                  name="email"
+                  placeholder="Email"
+                  required
+                  formControlName="email"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <fa-icon [icon]="faPhone"></fa-icon>
+                  </div>
+                </div>
+                <input
+                  type="number"
+                  class="phoneNumber form-control"
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  placeholder="Phone Number"
+                  required
+                  formControlName="phoneNumber"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <fa-icon [icon]="faPassword"></fa-icon>
+                  </div>
+                </div>
+                <input
+                  type="password"
+                  class="password form-control"
+                  id="password"
+                  name="password"
+                  placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
+                  required
+                  formControlName="password"
+                />
+              </div>
+            </div>
+          
+            <div class="my-2">
+              <p>
+                Don't have an account?
+                <a
+                  [routerLink]="['/login']"
+                  routerLinkActive="router-link-active"
+                  >Login</a
+                >
+              </p>
+            </div>
+            <div class="text-center col-12">
+              <input
+                type="submit"
+                value="REGISTER"
+                class="btn btn-info btn-block rounded-0 py-2 col-12"
+                type="submit"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

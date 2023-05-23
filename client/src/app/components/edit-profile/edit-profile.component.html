@@ -1,0 +1,95 @@
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="editProfileModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="EditProfileForm" (ngSubmit)="submitForm()">
+          <div>
+            <div class="card-body p-3">
+              <!--Body-->
+              <div class="form-group">
+                <div class="input-group mb-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    name="firstName"
+                    placeholder="First Name"
+                    formControlName="firstName"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend"></div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    name="lastName"
+                    placeholder="Last Name"
+                    formControlName="lastName"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend"></div>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="nombre"
+                    name="email"
+                    placeholder="Email"
+                    formControlName="email"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend"></div>
+                  <input
+                    type="number"
+                    class="phoneNumber form-control"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    placeholder="Phone Number"
+                    formControlName="phoneNumber"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="!EditProfileForm.valid"
+              data-bs-dismiss="modal"
+            >
+              Save changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

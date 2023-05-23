@@ -1,0 +1,92 @@
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Create Post</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <main class="form-signin w-100 m-auto">
+          <form [formGroup]="PostForm" (ngSubmit)="submitForm()">
+            <div class="form-floating my-2">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="John Doe"
+                formControlName="productName"
+              />
+              <label for="floatingInput">Product Name</label>
+            </div>
+            <div class="form-floating my-2">
+              <input
+                class="form-control"
+                placeholder="Price"
+                type="number"
+                formControlName="price"
+              />
+              <label for="floatingInput">Price</label>
+            </div>
+            <div class="">
+              <textarea
+                type="text"
+                class="form-control"
+                placeholder="Product Description"
+                rows="4"
+                formControlName="productDescription"
+              ></textarea>
+            </div>
+            <div class="my-2">
+              <input
+                class="form-control"
+                type="file"
+                accept="image/*"
+                formControlName="productImage"
+                (change)="onFileSelected($event)"
+                enctype="multipart/form-control"
+              />
+            </div>
+            <div
+              *ngIf="
+                (PostForm.controls['productName'].invalid &&
+                  (PostForm.controls['productName'].dirty ||
+                    PostForm.controls['productName'].touched)) ||
+                (PostForm.controls['productDescription'].invalid &&
+                  (PostForm.controls['productDescription'].dirty ||
+                    PostForm.controls['productDescription'].touched)) ||
+                (PostForm.controls['price'].invalid &&
+                  (PostForm.controls['price'].dirty ||
+                    PostForm.controls['price'].touched)) ||
+                (PostForm.controls['productImage'].invalid &&
+                  (PostForm.controls['productImage'].dirty ||
+                    PostForm.controls['productImage'].touched))
+              "
+              role="alert"
+              class="alert alert-danger"
+            >
+              <div
+                *ngIf="PostForm.controls['price'].errors?.['pattern'] &&!PostForm.valid"
+              >
+                Price must be a positive number
+              </div>
+              <div *ngIf="PostForm.controls['productName'].errors?.['required'] ||PostForm.controls['productDescription'].errors?.['required']||PostForm.controls['price'].errors?.['required'] ||PostForm.controls['productImage'].errors?.['required']  ">All fields are required</div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" [disabled]="!PostForm.valid"  data-bs-dismiss="modal">Post</button>
+            </div>
+          </form>
+        </main>
+      </div>
+    </div>
+  </div>
+</div>

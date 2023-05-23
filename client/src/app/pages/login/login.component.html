@@ -1,0 +1,100 @@
+<div class="container" [formGroup]="LoginForm" (ngSubmit)="submitForm()">
+  <div
+    class="row .d-flex align-items-center justify-content-center"
+    style="height: 80vh"
+  >
+    <div class="col-12 col-md-8 col-lg-6 pb-5">
+      <form>
+        <div class="card border rounded-0">
+          <div class="card-body p-3">
+            <!--Body-->
+            <div class="form-group">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <fa-icon [icon]="faEmail"></fa-icon>
+                  </div>
+                </div>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="nombre"
+                  name="email"
+                  placeholder="ejemplo@gmail.com"
+                  required
+                  formControlName="email"
+                />
+              </div>
+            </div>
+            <div
+              *ngIf="
+                LoginForm.controls['email'].invalid &&
+                (LoginForm.controls['email'].dirty ||
+                  LoginForm.controls['email'].touched)
+              "
+              role="alert"
+              class="alert alert-danger"
+            >
+              <div *ngIf="LoginForm.controls['email'].errors?.['required']">
+                Email is required
+              </div>
+              <div *ngIf="LoginForm.controls['email'].errors?.['email']">
+                Email not valid
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <fa-icon [icon]="faPassword"></fa-icon>
+                  </div>
+                </div>
+                <input
+                  type="password"
+                  class="password form-control"
+                  id="password"
+                  name="password"
+                  placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
+                  required
+                  formControlName="password"
+                />
+              </div>
+            </div>
+            <div
+              *ngIf="
+                LoginForm.controls['password'].invalid &&
+                (LoginForm.controls['password'].dirty ||
+                  LoginForm.controls['password'].touched)
+              "
+              role="alert"
+              class="alert alert-danger"
+            >
+              <div *ngIf="LoginForm.controls['password'].errors?.['required']">
+                Password is required
+              </div>
+
+            </div>
+            <div class="my-2">
+              <p>
+                Don't have an account?
+                <a
+                  [routerLink]="['/register']"
+                  routerLinkActive="router-link-active"
+                  >Register</a
+                >
+              </p>
+            </div>
+            <div class="text-center col-12">
+              <input
+                type="submit"
+                value="LOGIN"
+                class="btn btn-info btn-block rounded-0 py-2 col-12"
+                type="submit"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
