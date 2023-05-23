@@ -34,8 +34,8 @@ const sendTokenResponse = async (user, statusCode, res) => {
     .cookie("token", token, {
       maxAge: 30 * 24 * 60 * 60,
       path: "/",
-      httpOnly: true,
-      secure: false, // only transfer over https
+      httpOnly: false,
+      secure: true, // only transfer over https
       sameSite: true,
     })
     .json({ success: true, token });
@@ -72,9 +72,9 @@ const logoutUser = async (req, res) => {
   try {
     res.clearCookie("token", {
       path: "/",
-      httpOnly: true,
-      secure: false,
-      sameSite: "none",
+      httpOnly: false,
+      secure: true,
+      sameSite: true,
     });
     res.status(200).json({ success: true });
   } catch (error) {
