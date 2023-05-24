@@ -1,22 +1,32 @@
 import jwt from "jsonwebtoken";
 import User from "../mongodb/models/userModel.js";
+import { parse } from "cookie";
+
+const getTokenFromCookie = (req) => {
+  const cookieHeader = req.headers.cookie;
+  console.log(req.headers);
+  if (cookieHeader) {
+    const cookies = parse(cookieHeader);
+    return cookies.token;
+  }
+  return null;
+};
 
 const isAuthenticated = async (req, res, next) => {
-  let token;
-  token = req.cookies.token;
+  const token = getTokenFromCookie(req);
 
-  //   Check if token exixts
+  //   Check if token exists
   if (!token) {
-    return res.status(404).json({ "success":false,message: "Token not found" });
+    return res.status(404).json({ success: false, message: "Token not found" });
   }
   try {
-    //verify token
+    // Verify token
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     req.user = await User.findById(decodedToken.id).select("-password");
     next();
   } catch (error) {
     res.clearCookie("token");
-    next(res.status(401).json({ message: "Not authorized, token failed" }));
+    res.status(401).json({ message: "Not authorized, token failed" });
   }
 };
 

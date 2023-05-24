@@ -29,7 +29,7 @@ UserSchema.methods.comparePassword = async function (enteredPassword) {
 
 UserSchema.methods.getJwtToken = function () {
   return jwt.sign({ id: this.id }, process.env.JWT_SECRET, {
-    expiresIn: "2 days",
+    expiresIn: "30 days",
   });
 }; 
 

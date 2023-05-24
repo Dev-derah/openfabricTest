@@ -1,4 +1,4 @@
-import cookieParser from "cookie-parser";
+import { serialize } from "cookie";
 import User from "../mongodb/models/userModel.js";
 // LOGIN Authenticated user
 const loginUser = async (req, res) => {
@@ -28,16 +28,17 @@ const loginUser = async (req, res) => {
 };
 const sendTokenResponse = async (user, statusCode, res) => {
   const token = await user.getJwtToken();
+  const cookieOptions = {
+    maxAge: 30 * 24 * 60 * 60, // 30 days in seconds
+    httpOnly: true,
+    secure: true,
+    sameSite: "Strict",
+    path: "/",
+  };
+  const tokenCookie = serialize("token", token, cookieOptions);
+  res.setHeader("Set-Cookie", tokenCookie);
 
-  res
-    .status(statusCode)
-    .cookie("token", token, {
-      maxAge: 24 * 60 * 60 * 100,
-      path: "/",
-      secure: false, // only transfer over https
-      sameSite: "none",
-    })
-    .json({ success: true, token });
+  res.status(statusCode).json({ success: true, token });
 };
 
 //create new user
@@ -99,11 +100,15 @@ const getUserProfile = async (req, res) => {
   }
 };
 const updateUserProfile = async (req, res) => {
-  const {_id}=req.user;
-  const body= req.body;
+  const { _id } = req.user;
+  const body = req.body;
   try {
-   const user= await User.findOneAndUpdate({_id},{...body},{new:true});
-   user.save();
+    const user = await User.findOneAndUpdate(
+      { _id },
+      { ...body },
+      { new: true }
+    );
+    user.save();
 
     res.status(200).json({ mesaage: "Successfully Updated" });
   } catch (error) {
