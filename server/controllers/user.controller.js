@@ -32,7 +32,7 @@ const sendTokenResponse = async (user, statusCode, res) => {
     maxAge: 30 * 24 * 60 * 60, // 30 days in seconds
     httpOnly: true,
     secure: true,
-    sameSite: "Strict",
+    sameSite: "none",
     path: "/",
   };
   const tokenCookie = serialize("token", token, cookieOptions);
