@@ -4,7 +4,6 @@ import { parse } from "cookie";
 
 const getTokenFromCookie = (req) => {
   const cookieHeader = req.headers.cookie;
-  console.log(req.headers);
   if (cookieHeader) {
     const cookies = parse(cookieHeader);
     return cookies.token;

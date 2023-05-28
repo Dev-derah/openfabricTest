@@ -34,6 +34,7 @@ const sendTokenResponse = async (user, statusCode, res) => {
     secure: true,
     sameSite: "none",
     path: "/",
+    domain: ".openfabrictest.onrender.com",
   };
   const tokenCookie = serialize("token", token, cookieOptions);
   res.setHeader("Set-Cookie", tokenCookie);
