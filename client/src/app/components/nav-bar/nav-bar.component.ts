@@ -9,18 +9,24 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './nav-bar.component.html',
 })
 export class NavBarComponent {
-  constructor(private service: UserService,private route:Router,private cookie:CookieService) {}
+  constructor(
+    private service: UserService,
+    private route: Router,
+    private cookie: CookieService
+  ) {}
 
-isLoggedIn =this.service.isLoggedIn$
+  isLoggedIn: boolean | undefined;
 
-  onInit=() => {
-
+  ngOnInit() {
+    this.service.isLoggedIn$.subscribe((isLoggedIn) => {
+      this.isLoggedIn = isLoggedIn;
+    });
   }
 
-  logoutUser(){
+  logoutUser() {
     this.service.logoutUser().subscribe({
       next: (info) => {
-        this.service.setLoggedIn(false)
+        this.service.setLoggedIn(false);
         console.log(this.isLoggedIn);
         this.route.navigateByUrl('/home');
         alert('logout successful');
@@ -31,5 +37,4 @@ isLoggedIn =this.service.isLoggedIn$
       },
     });
   }
-
 }

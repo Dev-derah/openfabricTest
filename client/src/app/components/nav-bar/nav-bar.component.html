@@ -28,7 +28,7 @@
             >Home</a
           >
         </li>
-        <li class="nav-item" *ngIf="isLoggedIn">
+        <li class="nav-item" *ngIf="!isLoggedIn">
           <a
             class="nav-link"
             [routerLink]="['/login']"
@@ -37,12 +37,21 @@
           >
         </li>
 
-        <li class="nav-item" *ngIf="!isLoggedIn">
+        <li class="nav-item" *ngIf="isLoggedIn">
           <a
             class="nav-link"
             [routerLink]="['/dashboard']"
             routerLinkActive="router-link-active"
             >Dashboard</a
+          >
+        </li>
+
+        <li class="nav-item cursor-pointer" *ngIf="isLoggedIn" >
+          <a 
+          (click)="logoutUser()"
+          [routerLink]="['/home']"
+            class="nav-link"
+            >Logout</a
           >
         </li>
       </ul>

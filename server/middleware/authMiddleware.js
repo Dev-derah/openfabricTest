@@ -1,15 +1,6 @@
 import jwt from "jsonwebtoken";
 import User from "../mongodb/models/userModel.js";
-import { parse } from "cookie";
-
-const getTokenFromCookie = (req) => {
-  const cookieHeader = req.headers.cookie;
-  if (cookieHeader) {
-    const cookies = parse(cookieHeader);
-    return cookies.token;
-  }
-  return null;
-};
+import { getTokenFromCookie } from "../utils/getToken.js";
 
 const isAuthenticated = async (req, res, next) => {
   const token = getTokenFromCookie(req);

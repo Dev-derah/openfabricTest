@@ -44,7 +44,7 @@ export class UserService {
   }
 
   logoutUser(): Observable<any> {
-    return this.http.post<object>(`${environment.apiUrl}/users/logout`,{
+    return this.http.post<object>(`${environment.apiUrl}/users/logout`,null,{
       withCredentials: true,
     });
   }

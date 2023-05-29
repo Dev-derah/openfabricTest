@@ -46,7 +46,8 @@ export class CreatePostComponent {
           alert('Post successful');
         },
         error: (err) => {
-          alert(`Error creating product${err}`);
+          alert(`Error: ${err.error.message}`);
+          this.PostForm.reset();
         },
       });
     } else {

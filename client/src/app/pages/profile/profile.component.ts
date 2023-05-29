@@ -24,11 +24,9 @@ export class ProfileComponent implements OnInit {
     this.service.getUserProfile().subscribe({
       next: (_userDetails) => {
         this.user = _userDetails.user;
-        console.log(this.service.isLoggedIn$)
         this.service.setLoggedIn(true);
       },
       error: (err) => {
-        console.log(this.service.isLoggedIn$);
         this.service.setLoggedIn(false);
         this.route.navigateByUrl('/login');
         alert(err.error.message);

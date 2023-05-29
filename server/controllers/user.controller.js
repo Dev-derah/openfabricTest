@@ -1,5 +1,6 @@
 import { serialize } from "cookie";
 import User from "../mongodb/models/userModel.js";
+import { getTokenFromCookie } from "../utils/getToken.js";
 // LOGIN Authenticated user
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -29,7 +30,7 @@ const loginUser = async (req, res) => {
 const sendTokenResponse = async (user, statusCode, res) => {
   const token = await user.getJwtToken();
   const cookieOptions = {
-    maxAge: 30 * 24 * 60 * 60, // 30 days in seconds
+    maxAge: 30 * 24 * 60 * 60,
     httpOnly: true,
     secure: true,
     sameSite: "none",
@@ -70,16 +71,21 @@ const registerUser = async (req, res) => {
   }
 };
 const logoutUser = async (req, res) => {
-  try {
-    res.clearCookie("token", {
-      path: "/",
-      secure: false,
-      sameSite: "none",
-    });
-    res.status(200).json({ success: true });
-  } catch (error) {
-    res.status(500).json({ message: "Something went wrong" });
-  }
+    try {
+      res.clearCookie("token", {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+        path: "/",
+        domain: ".openfabrictest.onrender.com",
+      });
+      res.status(200).json({ success: true });
+    } catch (error) {
+      res.status(500).json({ message: "Something went wrong" });
+    }
+
+
+
 };
 const getUserProfile = async (req, res) => {
   const user = await User.findById(req.user._id).populate("products");

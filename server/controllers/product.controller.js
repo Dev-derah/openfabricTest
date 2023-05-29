@@ -40,6 +40,9 @@ const createProduct = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
+    if (file.size > 10485760) {
+        return res.status(500).json({ message: "File too large, file must not be more than 10MB" });
+    }
     //upload image in cloudinary
     const result = await cloudinary.uploader.upload(file.path);
 
@@ -57,7 +60,7 @@ const createProduct = async (req, res) => {
 
     res.status(200).json({ message: "Product created successfully" });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error });
   }
 };
 
