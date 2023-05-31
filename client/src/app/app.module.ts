@@ -17,7 +17,7 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { NotificationToastComponent } from './components/notification-toast/notification-toast.component';
 import { ProductsTableComponent } from './components/products-table/products-table.component';
-import { EditProductComponent } from './components/edit-product/edit-product.component';
+import { EditProductComponent } from './pages/edit-product/edit-product.component';
 
 
 

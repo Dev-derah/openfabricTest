@@ -11,9 +11,14 @@ import { upload } from "../middleware/multer.js";
 
 const router = express.Router();
 router.get('/', getAllProducts)
-router.post("/create",isAuthenticated,upload.single('productImage'), createProduct);
+router.post("/create",isAuthenticated,upload.single('productImage'),createProduct);
 router.get("/getProductDetail/:id", getProductDetail);
-router.put("/update", isAuthenticated,updateProduct);
-router.delete('/delete/:id',deleteProduct)
+router.patch(
+  "/update/:id",
+  isAuthenticated,
+  upload.single('productImage'),
+  updateProduct
+);
+router.delete('/delete/:id',isAuthenticated,deleteProduct)
 
 export default router;

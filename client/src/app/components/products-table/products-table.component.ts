@@ -1,7 +1,8 @@
-import { Component,Input } from '@angular/core';
+import { Component, Input,Output } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products-table',
@@ -11,18 +12,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ProductsTableComponent {
   @Input()
   products!: Array<Product>;
-  EditProductForm!: FormGroup;
-  selectedProduct!: Product | null;
-  selectedFile: any;
 
   constructor(
     private productService: ProductService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private route:Router
   ) {}
 
   deleteProduct(id: string) {
     this.productService.deleteProduct(id).subscribe();
     window.location.reload();
   }
-
 }

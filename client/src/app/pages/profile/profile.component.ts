@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private service: UserService,
     private route: Router,
-    private productService: ProductService,
+    private productService: ProductService
   ) {}
 
   ngOnInit(): void {
@@ -32,15 +32,6 @@ export class ProfileComponent implements OnInit {
         alert(err.error.message);
       },
     });
-  }
-
-  deleteProduct(id: string) {
-    this.productService.deleteProduct(id).subscribe();
-    window.location.reload();
-  }
-
-  editProduct(product: any) {
-    console.log(product);
   }
 
   exploreProducts() {

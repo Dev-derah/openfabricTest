@@ -34,9 +34,22 @@ export class ProductService {
     );
   }
 
-  deleteProduct(id:string): Observable<any> {
+  deleteProduct(id: string): Observable<any> {
     return this.http.delete<object>(
-      `${environment.apiUrl}/products/delete/${id}`,
+`${environment.apiUrl}/products/delete/${id}`,
+      {
+        withCredentials: true,
+      }
+    );
+  }
+
+  updateProduct(id: any, body: object): Observable<any> {
+    return this.http.patch<object>(
+      `${environment.apiUrl}/products/update/${id}`,
+      body,
+      {
+        withCredentials: true,
+      }
     );
   }
 }

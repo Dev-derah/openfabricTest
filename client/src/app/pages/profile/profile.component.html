@@ -47,7 +47,7 @@
         <h2>My Products</h2>
         <ng-template #noProducts>You have not posted any Product</ng-template>
         <ng-container *ngIf="user.products.length > 0; else noProducts">
-            <app-products-table [products] ="user.products"></app-products-table>
+          <app-products-table [products]="user.products"></app-products-table>
         </ng-container>
       </div>
     </div>

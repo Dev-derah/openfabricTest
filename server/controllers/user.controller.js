@@ -1,6 +1,5 @@
 import { serialize } from "cookie";
 import User from "../mongodb/models/userModel.js";
-import { getTokenFromCookie } from "../utils/getToken.js";
 // LOGIN Authenticated user
 const loginUser = async (req, res) => {
   const { email, password } = req.body;

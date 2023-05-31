@@ -1,7 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { Observable } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({

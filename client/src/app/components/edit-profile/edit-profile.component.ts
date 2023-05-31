@@ -1,5 +1,6 @@
-import { Component,OnInit,Input } from '@angular/core';
+import { Component,OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Product } from 'src/app/models/product';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -11,7 +12,8 @@ import { UserService } from 'src/app/services/user.service';
 export class EditProfileComponent implements OnInit {
   @Input()
   user!: User;
-
+  @Input() selectedProduct!: Product;
+  @Output() selectedProductChange = new EventEmitter<Product>();
   EditProfileForm!: FormGroup;
 
   constructor(
@@ -32,16 +34,17 @@ export class EditProfileComponent implements OnInit {
       // Process the form data
       this.userService.updateUser(this.EditProfileForm.value).subscribe({
         next: () => {
-          window.location.reload()
+          window.location.reload();
           alert('Profile Updated successfully');
         },
         error: (err) => {
+          console.log(FormData)
           alert(err.error.message);
         },
       });
     } else {
       this.EditProfileForm.markAllAsTouched();
-      alert(this.EditProfileForm.invalid.valueOf)
+      alert(this.EditProfileForm.invalid.valueOf);
     }
   }
 }

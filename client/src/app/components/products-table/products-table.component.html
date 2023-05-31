@@ -17,10 +17,11 @@
         </td>
         <td>{{ product.productName }}</td>
         <td>{{ product.price | currency }}</td>
-        <td >
+        <td>
           <button
-            class="p-2 bg-primary text-white cursor-pointer btn m-2 "
-            (click)="deleteProduct(product._id)"
+            type="button"
+            class="btn btn-primary p-2 text-white cursor-pointer btn m-2"
+            routerLink="/dashboard/{{ product._id }}"
           >
             Edit
           </button>
@@ -35,3 +36,5 @@
     </tbody>
   </table>
 </div>
+
+

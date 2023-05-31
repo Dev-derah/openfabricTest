@@ -8,6 +8,7 @@ import { authGuard } from './guards/auth.guard';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
+import { EditProductComponent } from './pages/edit-product/edit-product.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,12 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [authGuard],
   },
+  {
+    path: 'dashboard/:productId',
+    component: EditProductComponent,
+    canActivate: [authGuard],
+  },
+
   {
     path: 'dashboard/createPost',
     component: CreatePostComponent,
